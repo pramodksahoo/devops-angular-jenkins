@@ -1,0 +1,56 @@
+<div class="container-fluid p-0">
+  <div class="row m-0" id="body-row">
+
+    <div id="contents" class="col justify-content-center" style="display: table-cell;vertical-align: middle; " valign="middle">
+
+      <div class="row d-flex  align-content-center flex-wrap m-5" >
+        <div class="offset-md-4 offset-lg-4 col-sm-12 col-md-4 col-lg-4" style="width:30vw;height:30vh;">
+          <div id="signup-container"  class="align-self-center p-4">
+
+
+              <div>
+                <h4>Sign Up</h4>
+
+                <p>Please register with below details to get benifits of Mirafra DevOps Application.</p>
+
+              </div>
+              <form class="pr-2 pl-2" #SignupForm="ngForm" (ngSubmit)="signup(SignupForm.value)" >
+
+                  <div class=" form-group">
+                    <p for="first_name"><b>First Name</b></p>
+                    <input ngModel type="text" class="form-control no-border" id="first_name"  placeholder="Enter First Name" name="first_name" required>
+                    <p for="last_name"><b>Last Name</b></p>
+                    <input ngModel type="text" class="form-control no-border" id="last_name"  placeholder="Enter Last Name" name="last_name" required>
+                    <p for="email"><b>Email Address</b></p>
+                    <input ngModel type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control no-border"  id="email" placeholder="Enter Email" name="email" required>
+
+                   <label>
+                    <input ngModel (change)="onchangeAgreement($event.target.checked)"  class="checkbox mt-1" type="checkbox" checked="checked" name="agreement">I Agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a> of Mirafra DevOps.
+                  </label>
+
+                  <div class="align-content-center" align="center">
+                    <p class="psw">Forgot <a href="#">password?</a></p>
+                    <input class="btn btn-danger" [disabled]="!SignupForm.form.valid" type="submit" value="Sign Up">
+                    <div>Already have Account <a [routerLink]="['/login']">Sign In</a></div>
+                  </div>
+
+                  </div>
+
+
+              </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

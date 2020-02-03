@@ -1,0 +1,19 @@
+input[type="text"],input[type="email"],input[type="password"] {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid gray;
+  border-radius: 0px;
+}
+
+#body-row{
+height:100vh;
+background-color:black;
+font-size:12px;
+}
+#signup-container{
+background-color:white;
+  border-radius: 5px;
+}
+
+

@@ -1,0 +1,78 @@
+<div id="main-container" class="container-fluid p-0">
+  <app-nav></app-nav>
+  <div class="row m-0" id="body-row">
+
+ <app-sidebar></app-sidebar>
+
+
+
+    <div id="contents" class="col justify-content-center" style="display: table-cell;vertical-align: middle;height:90vh;" valign="middle">
+
+      <div class="row d-flex  align-content-center flex-wrap" style="height:90vh;">
+        <div class="col" style="height:90vh;">
+          <div class="d-flex justify-content-between ml-5 mt-1">
+            <h3>Employees</h3>
+            <a class="pr-4" href="" style="right"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          </div>
+
+
+          <div class="align-self-center ml-5 m-1">
+            <div class="dropdown">
+              <div class=" d-flex justify-content-between">
+                <div class="d-inline-flex">
+                <h5>Filters</h5>
+                <button onclick="myFunction()" class="form-control dropbtn">Employee Name <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <button onclick="myFunction2()" class="form-control dropbtn">Email Address <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                </div>
+                <div class="pr-4">
+                 <a href="">RESET</a>
+                 </div>
+              </div>
+
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a *ngFor="let user of users" [routerLink]="['/employeedetails']" [queryParams]="{ employee_id: user.email}"><input class="checkbox" type="checkbox"  name="agreement"><img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="30px" width="30px"> {{user.first_name}} {{user.last_name}}</a>
+
+              </div>
+              <div id="myDropdown2" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput2" onkeyup="filterFunction2()">
+                <a *ngFor="let user of users" [routerLink]="['/employeedetails']" [queryParams]="{ employee_id: user.email}"><input class="checkbox" type="checkbox"  name="agreement"><img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="30px" width="30px"> {{user.email}}</a>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="align-self-center ml-5 m-3 custom-scroll-2" style="overflow-y:scroll;height:70vh;">
+            <table class="table">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Groups</th>
+              </tr>
+              <tr class="userlist-row" *ngFor="let user of users | paginate: { itemsPerPage: 8, currentPage: p }" [routerLink]="['/employeedetails']" [queryParams]="{employee_id: user.email}" >
+                <td><input class="checkbox" type="checkbox"  name="agreement"></td>
+                <td><img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="40px" width="40px"></td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.emp_id}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.groups_count}}</td>
+
+
+              </tr>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+      <pagination-controls class="employee-pagination" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

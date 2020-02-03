@@ -1,0 +1,14 @@
+.list-group-item:hover,.list-group-item:focus{
+  background-color:gainsboro ;
+color: #d50000;
+
+}
+.list-group-item{
+    border: none!important;
+  color:gray;
+  font-weight: bold;
+}
+.list-group-item:active{
+  background-color:gainsboro ;
+color: #d50000;
+}

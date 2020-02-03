@@ -1,0 +1,87 @@
+<div id="main-container" class="container-fluid p-0">
+  <app-nav></app-nav>
+  <div class="row m-0" id="body-row">
+
+ <app-sidebar></app-sidebar>
+
+
+
+    <div id="contents" class="col justify-content-center" style="display: table-cell;vertical-align: middle; height:90vh;" valign="middle">
+
+      <div class="row d-flex  align-content-center flex-wrap" style="height:90vh;">
+        <div class="col" style="height:90vh;">
+          <div class="d-flex justify-content-between ml-5 mt-1" >
+            <h3>Product</h3>
+            <div>
+               <a class="" href="" style="right" style="color: #d50000;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <a class="mr-4 ml-2" [routerLink]="['/add_product']" style="right" style="color: #d50000;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            </div>
+
+          </div>
+
+
+          <div class="align-self-center ml-5 m-1">
+            <div class="dropdown">
+              <div class=" d-flex justify-content-between">
+                <div class="d-inline-flex">
+                <h5>Filters</h5>
+                <button onclick="myFunction()" class="form-control dropbtn">Product Type <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                </div>
+                <div class="pr-4">
+                 <a href="" style="color: #d50000;">RESET</a>
+                 </div>
+              </div>
+
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a *ngFor="let product of products" [routerLink]="['/product_details']" [queryParams]="{ product_id: product.product_id}"><input class="checkbox" type="checkbox"  name="agreement"><img style="border:1px solid gray;border-radius: 50%;" src="http://192.168.1.200:83/{{product.image}}" height="30px" width="30px"> {{product.product_type}}</a>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="align-self-center ml-5 m-3 custom-scroll-2" style="overflow-y:scroll;height:70vh;">
+            <table class="table" >
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Product Type</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">No. of Groups</th>
+                <th scope="col">Members</th>
+              </tr>
+              <tr class="userlist-row" [routerLink]="['/product_details']" [queryParams]="{ product_id: product.product_id}" *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: p }">
+
+                <td><input class="checkbox" type="checkbox"  name="agreement"></td>
+                <td><img style="border:1px solid gray;border-radius: 50%;" src="http://192.168.1.200:83/{{product.image}}" height="40px" width="40px"></td>
+
+                <td>{{product.product_type}}</td>
+                <td>{{product.product_id}}</td>
+                <td>{{product.product_name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.groups.length}}</td>
+                <td>
+                  <ul class="list-inline" style="width:80px; overflow-x:hidden;display:flex;">
+                    <li class="" style=" background-color:gray;align-text:center;list-style:none;width:40px;height:40px;overflow-hidden;border:1px solid black;border-radius: 50%; z-index:" *ngFor="let member of product.members"><span style="color:white">{{ member.first_name | slice:0:1 | titlecase }}</span>
+
+                    </li>
+                    +more
+                  </ul>
+
+
+                </td>
+
+              </tr>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+      <pagination-controls class="product-pagination" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

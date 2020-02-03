@@ -1,0 +1,171 @@
+<div *ngIf="isAdmin; else sidebarUser" id="sidebar-container-admin" aria-expanded="false" class="sidebar-container d-none d-md-block sidebar-expanded">
+
+	<ul class="list-group">
+
+<a [routerLink]="['/dashboard']" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-dashboard fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Dashboard</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<a  [routerLink]="['/employees']"  aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa fa-user fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Employees</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<a  [routerLink]="['/groups']" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-users fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Groups</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<a  [routerLink]="['/product']"  aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-mobile fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Products</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<div id="submenu1" class="collapse sidebar-submenu">
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Charts</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Reports</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Tables</span>
+</a>
+</div>
+<a [routerLink]="['/home']"  aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-user fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Profile</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<div id="submenu2" class="collapse sidebar-submenu">
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Settings</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Password</span>
+</a>
+</div>
+<a [routerLink]="['/configurations']" class="bg-light list-group-item list-group-item-action">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-gear fa-fw"></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Configs</span>
+</div>
+</a>
+
+<a href="javascript:void(0)" (click)="logout()" class="bg-light list-group-item list-group-item-action">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-sign-out fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Logout</span>
+</div>
+</a>
+
+<a href="javascript:void(0)" data-toggle="sidebar-colapse" (click)="sidebarOn()" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span id="collapse-icon" class="fa fa-2x  fa-angle-double-left"></span>
+<span *ngIf="sidebarOpened"  id="collapse-text" class="menu-collapsed ml-3">Collapse</span>
+</div>
+</a>
+
+<!-- <li class="list-group-item logo-separator d-flex justify-content-center">
+<img src="https://mirafra.com/wp-content/uploads/2016/05/mira_logo.png" width="100" height="50">
+</li> -->
+</ul>
+</div>
+<ng-template #sidebarUser>
+<div id="" aria-expanded="false" class="sidebar-container d-none d-md-block sidebar-expanded">
+
+	<ul class="list-group">
+<!--
+		<li class="list-group-item sidebar-separator-title text-muted align-items-center menu-collapsed ml-3 d-flex">
+			<small>MAIN MENU</small>
+</li> -->
+
+
+<a [routerLink]="['/']" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-dashboard fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Dashboard</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+
+<a  [routerLink]="['/product']"  aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-mobile fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Products</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<div id="submenu4" class="collapse sidebar-submenu">
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Charts</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Reports</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Tables</span>
+</a>
+</div>
+<a [routerLink]="['/home']"  aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start collapsed">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-user fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Profile</span>
+<span class="submenu-icon ml-auto"></span>
+</div>
+</a>
+
+<div id="submenu3" class="collapse sidebar-submenu">
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Settings</span>
+</a>
+<a href="#" class="list-group-item list-group-item-action bg-light text-white">
+<span class="menu-collapsed ml-3">Password</span>
+</a>
+</div>
+<a [routerLink]="['/tasks']" class="bg-light list-group-item list-group-item-action">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-tasks fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Tasks</span>
+</div>
+</a>
+
+
+<a href="javascript:void(0)" (click)="logout()" class="bg-light list-group-item list-group-item-action">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span class="fa fa-sign-out fa-fw "></span>
+<span *ngIf="sidebarOpened" class="menu-collapsed ml-3">Logout</span>
+</div>
+</a>
+
+<a href="javascript:void(0)" (click)="sidebarOn()" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+<div class="d-flex w-100 justify-content-start align-items-center">
+<span id="collapse1-icon" class="fa fa-2x  fa-angle-double-left"></span>
+<span *ngIf="sidebarOpened" id="collapse2-text"  class="menu-collapsed ml-3">Collapse</span>
+</div>
+</a>
+
+<!-- <li class="list-group-item logo-separator d-flex justify-content-center">
+<img src="https://mirafra.com/wp-content/uploads/2016/05/mira_logo.png" width="100" height="50">
+</li> -->
+</ul>
+</div>
+</ng-template>

@@ -1,0 +1,22 @@
+input[type="text"],input[type="password"] {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+
+}
+a{
+pointer:cursor;
+}
+#body-row{
+height:100vh;
+background-color:black;
+font-size:12px;
+
+}
+#login-container{
+background-color:white;
+  border-radius: 5px;
+}
+

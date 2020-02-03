@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e7f4fa;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="http://www.mirafra.com"><img src="https://mirafra.com/wp-content/uploads/2016/05/mira_logo.png" width="100" height="35">Mirafra DevOps</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    </ul>
+
+    <div *ngIf="logged_in" class="profile-header dropdown mr-2 form-inline pull-right  my-3 my-lg-0 align-middle " >
+
+      <img data-toggle="dropdown" src="{{user_data.profile_picture}}" style="border:1px solid gray;border-radius: 50%;" width="30px" height="30px" class="rounded-circle" alt="Cinque Terre"><p class="align-middle ml-2  mr-1" data-toggle="dropdown" style="margin-bottom:-2%;"><strong>{{user_data.first_name | titlecase }}</strong></p>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" [routerLink]="['/home']">Profile</a>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
+    </div>
+
+  </div>
+</nav>

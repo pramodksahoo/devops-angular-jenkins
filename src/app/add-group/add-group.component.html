@@ -1,0 +1,110 @@
+<div id="main-container" class="container-fluid p-0">
+  <app-nav></app-nav>
+  <div class="row m-0" id="body-row">
+
+ <app-sidebar></app-sidebar>
+    <div id="contents" class="col justify-content-center" style="display: table-cell;vertical-align: middle;height:90vh;" valign="middle">
+
+      <div class="row d-flex  align-content-center flex-wrap">
+        <div class="col" style="height:90vh;">
+          <div class="d-flex justify-content-between ml-5 mt-1">
+
+
+            <div>
+              <h5><a class="pr-4" [routerLink]="['/groups']" style="right"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>New Group</h5>
+              <p class="ml-3 pl-4">Groups / <a style="color:blue;">New Group</a></p>
+            </div>
+            <div>
+              <button class="btn btn-primary" [routerLink]="['/groups']">Cancel</button>
+              <button class="btn btn-danger ml-2 mr-2" (click)="addGroupWithUsers()">Save</button>
+            </div>
+
+
+          </div>
+
+         <div class="align-self-center ml-4 m-1 mt-0 mr-4" style="height:70vh;">
+           <div class="row"style="height:70vh;box-shadow: 2px 2px 10px 1px #e2e2e2;overflow-y:scroll;">
+
+
+             <div class="col-md-12 col-lg-9 col-sm-12 border-left" style="border-left:1px solid #8080803b;height:70vh;">
+              <div class="pl-4 pt-4" >
+                <label class="label" style="color: #d50000;">Group Information</label>
+                <div class=" ml-4 mr-2 mt-2 mb-2" style="display:block!important;" >
+                  <label for="groupname" class="mr-4">Group Name</label>
+                  <input ngModel class="form-control" (keyup)="newGroupNameFun($event.target.value)" type="text" name="groupname" id="groupname" required>
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="pt-2">
+                <label class="label" style="color: #d50000;">Associated Employee List</label>
+                </div>
+                <div class="">
+                  <div  class="d-flex justify-content-center ">
+                    <div *ngIf="selectedEmployee?.length < 1" class="align-self-center">
+                       <img src="../assets/Bitbucket.png" height="200px" width="200px">
+                    <p class="">No Employees Added to the Group</p>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#innermodel">Add Employees</button>
+                    </div>
+
+
+                  </div>
+                  <div>
+                    <div id="added-employees" class="dropdown-content" *ngIf="selectedEmployee?.length > 0">
+                      <input class="form-control" type="text" placeholder="Search.." id="searchEmplpoyeeInput" onkeyup="filterFunctionGroupEmployee()">
+
+                                   <a *ngFor="let user of selectedEmployee" >
+                                  <input class="checkbox" (click)="onSelectedEmployee(user)" type="checkbox"  name="agreement">
+                                  <img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="30px" width="30px"> {{user.first_name}} {{user.last_name}}</a>
+
+                    </div>
+                  </div>
+
+                   <!-- Modal -->
+                  <div class="modal fade" id="innermodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle"> All Employees</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+<!--                              <button *ngIf="!dropdownClosed"  id="hide-dropdown" class="brn btn-primary form-control" onclick="$('#myDropdown').toggle('show');">Done</button>-->
+                              <div id="myDropdown" class="dropdown-content">
+                                  <input class="form-control" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                  <a *ngFor="let user of allusers" >
+                                  <input class="checkbox" (click)="onSelectedEmployee(user)" type="checkbox"  name="agreement">
+                                  <img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="30px" width="30px"> {{user.first_name}} {{user.last_name}}</a>
+                              </div>
+                              <div id="selected-employees">
+                                <h5 *ngIf="selectedEmployee">Selected Employees</h5>
+                                   <a *ngFor="let user of selectedEmployee" >
+                                  <input class="checkbox" (click)="onSelectedEmployee(user)" type="checkbox"  name="agreement">
+                                  <img style="border:1px solid gray;border-radius: 50%;" src="{{user.profile_picture}}" height="30px" width="30px"> {{user.first_name}} {{user.last_name}}</a>
+
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
+<!--                              <button class="btn btn-danger" (click)="addGroupWithUsers()">Done</button>-->
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                </div>
+              </div>
+             </div>
+           </div>
+         </div>
+
+        </div>
+      </div>
+      <!-- <pagination-controls class="product-pagination" (pageChange)="p = $event"></pagination-controls> -->
+    </div>
+
+  </div>
+</div>

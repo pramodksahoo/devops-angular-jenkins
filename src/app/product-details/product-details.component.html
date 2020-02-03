@@ -1,0 +1,195 @@
+<div id="main-container" class="container-fluid p-0">
+  <app-nav></app-nav>
+  <div class="row m-0" id="body-row">
+
+ <app-sidebar></app-sidebar>
+
+
+
+    <div id="contents" class="col justify-content-center" style="display: table-cell;vertical-align: middle;" valign="middle">
+
+      <div class="row d-flex  align-content-center flex-wrap" >
+        <div class="col" >
+          <div class="d-flex justify-content-between ml-5 mt-1" >
+
+
+            <h5><a class="pr-4" [routerLink]="['/product']" style="right"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>Mirafra Product</h5>
+            <a class="pr-4" href="" style="right"><i class="fa fa-edit" aria-hidden="true"></i></a>
+          </div>
+
+         <div class="align-self-center ml-4 m-1 mt-0 mr-4">
+           <div class="row custom-scroll-2"style="height:80vh;box-shadow: 2px 2px 10px 1px #e2e2e2;overflow-y:scroll;">
+             <div class="col-sm-12 col-md-12 col-lg-3 m-2 pt-1" style="border-left:1px solid #8080803b;margin-top:0!important;margin-right:0!important;margin-left:0!important;padding-right:0!important;padding-left:0!important;">
+                <div class="d-flex justify-content-center" style="width:100%;">
+                  <img class=" align-self-center" style="width:200px!important; height:200px!important; border-radius: 50%" src="http://192.168.1.200:83/{{product_details.image}}" >
+
+                </div>
+              <div class=" align-self-center" style="background-color:#8080803b;">
+             <div class="m-2 ">
+                <div class="m-2"><strong>{{product_details.product_name | titlecase}}</strong></div>
+
+              </div>
+              <div class="m-2 ">
+                <div class="m-2">{{product_details.product_type | titlecase}}</div>
+              </div>
+              </div>
+
+              <div  class=" p-2" >
+                <label class=" ">Description</label>
+                <div class="">{{product_details.description}}</div>
+              </div>
+
+             </div>
+
+
+
+
+             <div class="col-md-12 col-lg-9 col-sm-12 border-left" style="border-left:1px solid #8080803b;height:80vh;">
+              <div class="mt-4" >
+                <label class="label" style="color: #d50000;">Branch Selection</label>
+                <div class="btn-group btn-group-toggle ml-0 mr-2 mt-2 mb-2" style="display:block!important;" >
+                  <label class=" mr-4">
+                    <input ngModel name="branch_category" class="" (change)="branchTypeChange($event.target.value)" value="Master" type="radio" id="option1" autocomplete="off" [checked]="product_details.branch_category==='Master'"> Master
+                  </label>
+                  <label class="">
+                    <input ngModel name="branch_category" class="" (change)="branchTypeChange($event.target.value)" value="Child" type="radio"  id="option2" autocomplete="off" [checked]="product_details.branch_category==='Child'"> Child
+                  </label>
+                </div>
+                <label class="label mt-4" style="color: #d50000;">Product Information</label>
+                  <div class="form-group">
+                    <label for="product-type">Product Type</label>
+                    <input type="text" class="form-control" id="product-type"  value="{{product_details.product_type | titlecase}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="product-description">Product Description</label>
+                    <input type="text" class="form-control" id="product-description" value="{{product_details.description}}">
+                  </div>
+                  <label class="label mt-4" style="color: #d50000;">Branch Configs</label>
+                  <div class="form-group">
+                    <label for="ap-path">AP Path</label>
+                    <input type="text" class="form-control" id="ap-path"  value="{{product_details.ap_path }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="cp-path">CP Path</label>
+                    <input type="text" class="form-control" id="cp-path" value="{{product_details.cp_path}}">
+                  </div>
+              </div>
+              <div class="" >
+                <div class="mt-4">
+                  <label class="label" style="color: #d50000;">Associated Groups (<a *ngIf="product_details.groups?.length >0" >{{product_details.groups.length}}</a>)</label>
+                <div class="pull-right">
+                <a class="" href="" style="color: #cbcbcb;">REMOVE GROUP</a>
+                <a class=" ml-5" href="" style="color: #d50000;">ADD GROUP</a>
+                </div>
+                </div>
+                <div class="" *ngIf="product_details.groups?.length >0">
+                  <ul class="list-group user-group-list">
+                  <li class="list-group-item pl-5 align-middle" *ngFor="let group of groups_with_members; let i = index">
+                    <div class="d-flex">
+                      <input class="form-check-input pl-5 align-self-center" type="checkbox" name="options" id="option3" >
+
+                    <div class="col pl-5" *ngIf="product_details.groups?.length >0">
+                      <label class="col" style="font-size: 15px;">{{group.group_name | titlecase }}</label>
+                      <label class="col" style="margin-top:-20px!important;font-size: 10px;">Members {{group.ass_emps.length}}</label>
+                    </div>
+                    <a  class="pull-right align-self-center"data-toggle="modal" [attr.data-target]="'#ggg-'+ i">VIEW EMPLOYEES</a >
+                    <!-- Modal -->
+                      <div class="modal fade" id="ggg-{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">{{ group.group_name | titlecase }} Members</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <ul class="list-group">
+                                <li *ngFor="let emp of group.ass_emps" class="list-group-item">
+                                  <label><input type="checkbox" class="checkbox ml-2" ></label>
+                                  {{emp.first_name}}
+                                  {{emp.last_name}}
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  </ul>
+
+                </div>
+              </div>
+             </div>
+           </div>
+         </div>
+          <!-- <div class="align-self-center ml-5 m-1">
+            <div class="dropdown">
+              <div class=" d-flex justify-content-between">
+                <div class="d-inline-flex">
+                <h5>Filters</h5>
+                <button onclick="myFunction()" class="form-control dropbtn">Product Type <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                </div>
+                <div class="pr-4">
+                 <a href="">RESET</a>
+                 </div>
+              </div>
+
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a *ngFor="let product of products" href="{{product.product_id}}"><input class="checkbox" type="checkbox"  name="agreement"><img style="border:1px solid gray;border-radius: 50%;" src="{{product.productprofile_picture}}" height="30px" width="30px"> {{product.product_name}}</a>
+
+              </div>
+            </div>
+
+          </div> -->
+          <!-- <div class="align-self-center ml-5 m-3">
+            <table class="table">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Product Type</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">No. of Groups</th>
+                <th scope="col">Members</th>
+              </tr>
+              <tr *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: p }">
+                <td><input class="checkbox" type="checkbox"  name="agreement"></td>
+                <td><img style="border:1px solid gray;border-radius: 50%;" src="{{product.product_picture}}" height="40px" width="40px"></td>
+
+                <td>{{product.product_id}}</td>
+                <td>{{product.product_type}}</td>
+                <td>{{product.product_name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.groups_count}}</td>
+                <td>
+                  <ul class="list-inline" style="width:80px; overflow-x:hidden;display:flex;">
+                    <li class="" style=" background-color:gray;align-text:center;list-style:none;width:40px;height:40px;overflow-hidden;border:1px solid black;border-radius: 50%; z-index:" *ngFor="let member of product.members"><span style="color:white">{{ member.first_name | slice:0:1 | titlecase }}</span>
+
+                    </li>
+                    +more
+                  </ul>
+
+
+                </td>
+
+
+              </tr>
+            </table>
+
+          </div> -->
+
+        </div>
+      </div>
+      <!-- <pagination-controls class="product-pagination" (pageChange)="p = $event"></pagination-controls> -->
+    </div>
+  </div>
+</div>
